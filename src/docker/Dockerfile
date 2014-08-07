@@ -4,21 +4,27 @@ MAINTAINER monsieurchico <rderocle@gmail.com>
 # update system
 RUN echo "update system"
 RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get dist-upgrade -y
+#RUN apt-get upgrade -y
+#RUN apt-get dist-upgrade -y
 
 # install required dependencies
-RUN echo "install required dependencies"
-RUN apt-get install -y  curl \
-                        wget \
-                        php5-cli \
-                        git
+#RUN echo "install required dependencies"
+#RUN apt-get install -y  curl \
+#                        wget \
+#                        php5-cli
 
 # install phpunit
-RUN echo "install phpunit"
-RUN wget https://phar.phpunit.de/phpunit.phar
-RUN chmod +x phpunit.phar
-RUN mv phpunit.phar /usr/local/bin/phpunit
+#RUN echo "install phpunit"
+#RUN wget https://phar.phpunit.de/phpunit.phar
+#RUN chmod +x phpunit.phar
+#RUN mv phpunit.phar /usr/local/bin/phpunit
+
+# install and configure git
+RUN apt-get install -y git
+RUN mkdir /root/.ssh/
+ADD id_rsa /root/.ssh/id_rsa
+RUN touch /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
 
 # install twgit
 RUN echo "install twgit"
