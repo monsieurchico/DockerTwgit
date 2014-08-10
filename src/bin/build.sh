@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ../conf/common.sh
+TWGIT="twgit"
 
 cd ../docker/
 docker rmi ${TWGIT}
