@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+workdir=$(pwd)
+
 sudo docker run -i \
     -t \
-    -w /root/twgit \
-    --name twgit twgit ./twgit
+    -v /:/host \
+    -w /host/${workdir} \
+    twgit /usr/local/bin/twgit $@
 sudo docker rm twgit > /dev/null 2>&1
