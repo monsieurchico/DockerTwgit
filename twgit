@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo docker run -i \
+    -t \
+    -w /root/twgit \
+    --name twgit twgit ./twgit
+sudo docker rm twgit > /dev/null 2>&1
