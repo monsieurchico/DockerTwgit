@@ -11,6 +11,12 @@ if [ "${USER}" != "root" ]; then
     exit 1
 fi
 
+# make sure docker can be accessed by current user
+if [ $(groups ${USER_NAME} | grep docker | wc -l) -eq 0 ]; then
+    sudo useradd ${USERNAME} docker
+fi
+sudo chown ${USER_NAME}:docker /var/run/docker.sock
+
 if [ ! -f "${CURRENT_DIR}/../res/id_rsa" ]; then
     if [ ${DEFAULT} -eq 1 ]; then
         cp ${USER_HOME}/.ssh/id_rsa ${CURRENT_DIR}/../res/id_rsa

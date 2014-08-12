@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+user=$(logname)
 workdir=$(pwd)
 
-sudo docker run -i \
+sudo -u $user docker run -i \
     -t \
     -v /:/host \
     -w /host/${workdir} \
